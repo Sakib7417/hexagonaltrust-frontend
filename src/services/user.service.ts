@@ -54,7 +54,7 @@ export const userService = {
     return response.data;
   },
 
-  updatePassword: async (currentPassword: string, newPassword: string) => {
+  changePassword: async (currentPassword: string, newPassword: string) => {
     const response = await api.put<ApiResponse<User>>('/user/password', {
       currentPassword,
       newPassword,

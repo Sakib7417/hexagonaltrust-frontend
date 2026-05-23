@@ -190,7 +190,7 @@ export default function WalletPage() {
                         <TableCell>
                           <div className="flex items-center gap-2">
                             <Calendar size={14} className="text-gray-500" />
-                            {format(new Date(reward.creditDate), 'MMM dd, yyyy')}
+                            {format(new Date(reward.rewardDate), 'MMM dd, yyyy')}
                           </div>
                         </TableCell>
                         <TableCell>
