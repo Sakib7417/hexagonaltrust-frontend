@@ -303,7 +303,7 @@ export default function AdminWithdrawsPage() {
             <div className="flex gap-2">
               <Button
                 onClick={handleApprove}
-                disabled={approvingId || !transactionId.trim()}
+                disabled={!!approvingId || !transactionId.trim()}
                 className="flex-1 bg-green-600 hover:bg-green-700"
               >
                 {approvingId ? 'Processing...' : 'Approve'}
