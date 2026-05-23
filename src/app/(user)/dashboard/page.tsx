@@ -128,7 +128,7 @@ export default function DashboardPage() {
               ₹{dashboard?.totalRewards || 0}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              From {dashboard?.rewardsCount || 0} weekly rewards
+              From {dashboard?.rewardCount || 0} weekly rewards
             </p>
           </CardContent>
         </Card>
@@ -226,14 +226,14 @@ export default function DashboardPage() {
               <div className="flex justify-between text-sm">
                 <span>Weeks Completed</span>
                 <span className="font-medium">
-                  {dashboard?.rewardsCount || 0} / 100
+                  {dashboard?.rewardCount || 0} / 100
                 </span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-3">
                 <div
                   className="bg-gradient-to-r from-blue-500 to-indigo-500 h-3 rounded-full transition-all duration-500"
                   style={{
-                    width: `${Math.min(((dashboard?.rewardsCount || 0) / 100) * 100, 100)}%`,
+                    width: `${Math.min(((dashboard?.rewardCount || 0) / 100) * 100, 100)}%`,
                   }}
                 ></div>
               </div>
