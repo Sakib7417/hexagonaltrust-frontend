@@ -5,6 +5,7 @@ import {
   Contribution,
   WithdrawRequest,
   Reward,
+  User,
 } from '@/types';
 
 export const userService = {
@@ -45,6 +46,19 @@ export const userService = {
     const response = await api.get<ApiResponse<Reward[]>>(
       `/user/rewards?${params}`
     );
+    return response.data;
+  },
+
+  updateProfile: async (data: Partial<User>) => {
+    const response = await api.put<ApiResponse<User>>('/user/profile', data);
+    return response.data;
+  },
+
+  updatePassword: async (currentPassword: string, newPassword: string) => {
+    const response = await api.put<ApiResponse<User>>('/user/password', {
+      currentPassword,
+      newPassword,
+    });
     return response.data;
   },
 };
