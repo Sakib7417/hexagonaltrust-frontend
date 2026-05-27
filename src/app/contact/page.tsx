@@ -133,7 +133,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                    <p className="text-gray-600">+91 1234567890</p>
+                    <p className="text-gray-600">+91 9935136569</p>
                     <p className="text-gray-600">Mon-Sat, 9AM-6PM IST</p>
                   </div>
                 </div>
@@ -144,8 +144,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Office</h3>
-                    <p className="text-gray-600">123 Business Street</p>
-                    <p className="text-gray-600">New Delhi, India 110001</p>
+                    <p className="text-gray-600">Bhore , </p>
+                    <p className="text-gray-600">Near BPS college, India 841426</p>
                   </div>
                 </div>
               </div>
@@ -156,11 +156,11 @@ export default function ContactPage() {
                 <div className="space-y-3">
                   <div className="p-4 bg-gray-50 rounded-lg">
                     <p className="font-semibold text-gray-900 mb-1">How do I get started?</p>
-                    <p className="text-sm text-gray-600">Simply register an account and make your first contribution to start earning rewards.</p>
+                    <p className="text-sm text-gray-600">Simply register an account and make your first contribution to be a part of Hexagonal.</p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="font-semibold text-gray-900 mb-1">When do I receive rewards?</p>
-                    <p className="text-sm text-gray-600">After contributing ₹25,000+, you'll receive ₹500 weekly for 100 weeks.</p>
+                    <p className="font-semibold text-gray-900 mb-1">When do I receive Advertisment cost?</p>
+                    <p className="text-sm text-gray-600">After contributing , you'll receive Advertisment cost  weekly for 100 weeks.</p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-lg">
                     <p className="font-semibold text-gray-900 mb-1">How can I withdraw?</p>
@@ -192,7 +192,7 @@ export default function ContactPage() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 px-4 text-center">
-        <p>&copy; 2024 Hexagonal Trust. All rights reserved.</p>
+        <p>&copy; 2026 Hexagonal Trust. All rights reserved.</p>
       </footer>
     </div>
   );
