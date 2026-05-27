@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { User, Mail, Phone, MapPin, Calendar, Edit2, Key } from 'lucide-react';
+import { User, Mail, Phone, MapPin, Calendar, Edit2, Key, Copy, IdCard } from 'lucide-react';
 import { format } from 'date-fns';
 import { userService } from '@/services/user.service';
 
@@ -37,6 +37,13 @@ export default function ProfilePage() {
   const { dashboard, loading, fetchDashboard } = useUserStore();
   const [editing, setEditing] = useState(false);
   const [changingPassword, setChangingPassword] = useState(false);
+
+  const copyUniqueId = () => {
+    if (dashboard?.user.uniqueId) {
+      navigator.clipboard.writeText(dashboard.user.uniqueId);
+      toast.success('ID copied to clipboard!');
+    }
+  };
 
   const {
     register,
@@ -116,6 +123,38 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
+
+      {/* Unique ID Card */}
+      {dashboard?.user.uniqueId && (
+        <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-blue-900">
+              <IdCard size={24} className="text-blue-600" />
+              Your Unique ID
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between p-4 bg-white rounded-lg border border-blue-200">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                  <IdCard size={24} className="text-white" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Your Hexagonal Trust ID</p>
+                  <p className="text-2xl font-bold text-blue-600">{dashboard.user.uniqueId}</p>
+                </div>
+              </div>
+              <Button onClick={copyUniqueId} variant="outline" size="sm" className="gap-2">
+                <Copy size={16} />
+                Copy
+              </Button>
+            </div>
+            <p className="text-xs text-gray-500 mt-3">
+              This is your unique identifier. You can share this ID with support for account verification.
+            </p>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Profile Card */}
       <Card>

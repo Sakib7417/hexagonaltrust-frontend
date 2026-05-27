@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { adminService } from '@/services/admin.service';
-import { Search, UserCheck, UserX } from 'lucide-react';
+import { Search, UserCheck, UserX, IdCard, Copy } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 import type { User } from '@/types';
@@ -18,6 +18,11 @@ export default function AdminUsersPage() {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  const copyUniqueId = (uniqueId: string) => {
+    navigator.clipboard.writeText(uniqueId);
+    toast.success('ID copied!');
+  };
 
   useEffect(() => {
     fetchUsers();
@@ -139,6 +144,7 @@ export default function AdminUsersPage() {
                 <Table>
                   <TableHeader>
                     <TableRow>
+                      <TableHead>Unique ID</TableHead>
                       <TableHead>Name</TableHead>
                       <TableHead>Email</TableHead>
                       <TableHead>Phone</TableHead>
@@ -151,6 +157,24 @@ export default function AdminUsersPage() {
                   <TableBody>
                     {users.map((user) => (
                       <TableRow key={user.id}>
+                        <TableCell>
+                          {user.uniqueId ? (
+                            <div className="flex items-center gap-2">
+                              <span className="font-mono font-bold text-purple-600">
+                                {user.uniqueId}
+                              </span>
+                              <button
+                                onClick={() => copyUniqueId(user.uniqueId!)}
+                                className="p-1 hover:bg-purple-100 rounded transition-colors"
+                                title="Copy ID"
+                              >
+                                <Copy size={14} className="text-purple-600" />
+                              </button>
+                            </div>
+                          ) : (
+                            <span className="text-gray-400">-</span>
+                          )}
+                        </TableCell>
                         <TableCell className="font-medium">{user.name}</TableCell>
                         <TableCell>{user.email}</TableCell>
                         <TableCell>{user.phone}</TableCell>

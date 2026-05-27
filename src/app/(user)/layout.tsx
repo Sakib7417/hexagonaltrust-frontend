@@ -14,6 +14,8 @@ import {
   LogOut,
   Menu,
   X,
+  FileText,
+  Calendar,
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth.store';
 import { Button } from '@/components/ui/button';
@@ -21,9 +23,11 @@ import { Button } from '@/components/ui/button';
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/profile', label: 'Profile', icon: User },
+  { href: '/membership', label: 'Membership Form', icon: FileText },
   { href: '/contribution', label: 'Contribution', icon: DollarSign },
   { href: '/wallet', label: 'Wallet', icon: Wallet },
   { href: '/withdraw', label: 'Withdraw', icon: Send },
+  { href: '/calendar', label: 'Calendar', icon: Calendar },
   { href: '/history', label: 'History', icon: History },
 ];
 

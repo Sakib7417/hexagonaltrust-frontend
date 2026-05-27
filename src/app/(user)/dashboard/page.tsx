@@ -14,6 +14,8 @@ import {
   ArrowDownRight,
   Plus,
   Send,
+  Copy,
+  IdCard,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
@@ -23,6 +25,12 @@ export default function DashboardPage() {
   const { dashboard, loading, fetchDashboard } = useUserStore();
   const [recentContributions, setRecentContributions] = useState<any[]>([]);
   const [recentWithdraws, setRecentWithdraws] = useState<any[]>([]);
+
+  const copyUniqueId = () => {
+    if (dashboard?.user.uniqueId) {
+      navigator.clipboard.writeText(dashboard.user.uniqueId);
+    }
+  };
 
   useEffect(() => {
     fetchDashboard();
@@ -62,6 +70,24 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-600 mt-1">Welcome back, {dashboard?.user.name}!</p>
+          
+          {/* Unique ID Display */}
+          {dashboard?.user.uniqueId && (
+            <div className="mt-3 flex items-center gap-2">
+              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+                <IdCard size={18} className="text-blue-600" />
+                <span className="text-sm text-gray-600">Your ID:</span>
+                <span className="font-bold text-blue-600">{dashboard.user.uniqueId}</span>
+                <button
+                  onClick={copyUniqueId}
+                  className="ml-2 p-1 hover:bg-blue-100 rounded transition-colors"
+                  title="Copy ID"
+                >
+                  <Copy size={14} className="text-blue-600" />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         <div className="flex gap-2">
           <Button onClick={() => router.push('/contribution')} className="gap-2">

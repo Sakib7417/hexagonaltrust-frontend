@@ -8,6 +8,9 @@ export function cn(...inputs: ClassValue[]) {
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hexagonaltrust-production.up.railway.app/api/v1';
 export const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://hexagonaltrust-production.up.railway.app';
 
+// export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+// export const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
+
 export const CONSTANTS = {
   MIN_CONTRIBUTION: 25000,
   WEEKLY_REWARD: 500,
