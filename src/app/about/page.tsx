@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
-import { Shield, Target, Heart, Users, Award, TrendingUp } from 'lucide-react';
+import { Shield, Target, Heart, Users, Award, TrendingUp,Eye,ShieldCheck } from 'lucide-react';
 
 export default function AboutPage() {
   return (
@@ -31,9 +31,9 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
               <p className="text-gray-600 text-lg leading-relaxed">
-                At Hexagonal Trust, we believe in creating a platform that rewards dedication and commitment. 
-                Our mission is to provide a transparent, reliable, and rewarding experience for every user. 
-                Through our automated reward system, we ensure that your contributions are recognized and compensated fairly.
+                At Hexagonal, our mission is to create meaningful change in healthcare, education, employment, and social welfare through the collective support of people. We aim to establish affordable hospitals, support children’s education, generate employment opportunities, and serve communities with impactful social initiatives.
+
+To maintain trust, transparency, and effective community management, Hexagonal is limited to a maximum of 2000 members who will together contribute towards building a better and stronger future.
               </p>
             </div>
             <div>
@@ -44,19 +44,19 @@ export default function AboutPage() {
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-3">
                   <Shield className="text-blue-600 mt-1" size={20} />
-                  <span>Trust and transparency in all transactions</span>
+                  <span>Affordable healthcare and better medical support for everyone</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Users className="text-blue-600 mt-1" size={20} />
-                  <span>Community-focused approach</span>
+                  <span>Empowering children through quality education</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Award className="text-blue-600 mt-1" size={20} />
-                  <span>Fair and automated reward distribution</span>
+                  <span>Creating employment opportunities for a stronger future</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <TrendingUp className="text-blue-600 mt-1" size={20} />
-                  <span>Continuous growth and improvement</span>
+                  <span>Serving society through community welfare and social development</span>
                 </li>
               </ul>
             </div>
@@ -69,14 +69,12 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
           <p className="text-lg text-gray-600 leading-relaxed mb-6">
-            Hexagonal Trust was founded with a simple yet powerful idea: create a platform where every contribution matters 
-            and is rewarded consistently. We understood that building trust takes time, which is why we've designed our 
-            system to be completely transparent and automated.
+           Hexagonal was started with a vision to create a remarkable change in society through the support and contribution of people. Our mission is focused on improving the medical field by opening hospitals where people can receive quality treatment at affordable and cheaper rates..
           </p>
           <p className="text-lg text-gray-600 leading-relaxed">
-            Our platform ensures that once you make a contribution of ₹25,000 or more, you become eligible for weekly 
-            rewards of ₹500 for up to 100 weeks. That's a total of ₹50,000 in rewards! Our automated system guarantees 
-            timely distributions without any manual intervention, making the process seamless and reliable.
+            Along with healthcare, Hexagonal is also dedicated to supporting the education of children, creating employment opportunities, and contributing to various social welfare services that help build a stronger and better future for communities.
+
+We believe that when people join hands together, real change becomes possible..
           </p>
         </div>
       </section>

@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Contribution & Reward Platform",
-  description: "Modern platform for managing contributions and weekly rewards",
+  title: "Hexagonal trust",
+  description: "Empowering Health, Education and Employment",
 };
 
 export default function RootLayout({

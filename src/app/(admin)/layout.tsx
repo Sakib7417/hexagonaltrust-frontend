@@ -15,7 +15,7 @@ import {
   Menu,
   X,
   Shield,
-  FileText,
+  Newspaper,
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth.store';
 import { Button } from '@/components/ui/button';
@@ -23,10 +23,10 @@ import { Button } from '@/components/ui/button';
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/users', label: 'Users', icon: Users },
-  { href: '/admin/membership', label: 'Membership', icon: FileText },
   { href: '/admin/contributions', label: 'Contributions', icon: DollarSign },
   { href: '/admin/withdraws', label: 'Withdrawals', icon: Send },
   { href: '/admin/rewards', label: 'Rewards', icon: Award },
+  { href: '/admin/news', label: 'News Ticker', icon: Newspaper },
   { href: '/admin/settings', label: 'Settings', icon: Settings },
 ];
 

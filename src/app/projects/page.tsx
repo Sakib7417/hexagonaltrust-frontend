@@ -13,18 +13,16 @@ export default function ProjectsPage() {
   const project = {
     title: 'Hexagonal Hospital',
     description: 'A state-of-the-art multi-specialty hospital providing world-class healthcare services with advanced medical technology, experienced doctors, and compassionate care for all patients.',
-    status: 'In Progress',
-    progress: 75,
+    status: 'Fully Operational',
+    progress: 100,
     icon: Rocket,
     startDate: 'Jan 2024',
     endDate: 'Dec 2025',
-    team: '200+ staff',
+    team: '20+ staff',
     images: [
-      'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&q=80',
-      'https://images.unsplash.com/photo-1519494026892-80bbd9d24685?w=1200&q=80',
-      'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1200&q=80',
-      'https://images.unsplash.com/photo-1551076805-e1869033e561?w=1200&q=80',
-      'https://images.unsplash.com/photo-1581595220892-b0739db3ba2c?w=1200&q=80',
+      '/Hexa.jpeg',
+      '/Hexa2.jpeg',
+      '/Hexa3.jpeg',
     ],
     features: [
       '24/7 Emergency Services',
@@ -32,6 +30,7 @@ export default function ProjectsPage() {
       'Multi-Specialty Departments',
       'Modern Diagnostic Facilities',
       'Patient-Centric Care',
+      'In-House Pharmacy with All Essential Medicines Available'
     ],
   };
 
@@ -63,7 +62,7 @@ export default function ProjectsPage() {
         <div className="max-w-5xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow">
             {/* Main Image Gallery */}
-            <div className="relative h-[500px] overflow-hidden group">
+            <div className="relative h-64 md:h-[500px] overflow-hidden group">
               <img
                 src={project.images[currentImageIndex]}
                 alt={`${project.title} - Image ${currentImageIndex + 1}`}
@@ -258,7 +257,7 @@ export default function ProjectsPage() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 px-4 text-center">
-        <p>&copy; 2024 Hexagonal Trust. All rights reserved.</p>
+        <p>&copy; 2026 Hexagonal Trust. All rights reserved.</p>
       </footer>
     </div>
   );

@@ -23,6 +23,9 @@ const registerSchema = z.object({
   country: z.string().min(2, 'Country is required'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
   confirmPassword: z.string(),
+  termsAccepted: z.boolean().refine((val) => val === true, {
+    message: 'You must accept the terms and conditions',
+  }),
 }).refine((data) => data.password === data.confirmPassword, {
   message: 'Passwords do not match',
   path: ['confirmPassword'],
@@ -173,6 +176,32 @@ export default function RegisterPage() {
               </div>
               {errors.confirmPassword && (
                 <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="termsAccepted"
+                  {...register('termsAccepted')}
+                  disabled={loading}
+                  className="mt-1"
+                />
+                <Label htmlFor="termsAccepted" className="cursor-pointer text-sm font-normal">
+                  I have read and agree to the{' '}
+                  <a
+                    href="/terms-and-conditions.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline font-medium"
+                  >
+                    Terms & Conditions
+                  </a>
+                </Label>
+              </div>
+              {errors.termsAccepted && (
+                <p className="text-sm text-red-500">{errors.termsAccepted.message}</p>
               )}
             </div>
 
