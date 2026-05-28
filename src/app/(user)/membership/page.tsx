@@ -90,7 +90,65 @@ export default function MembershipFormPage() {
     watch,
   } = useForm<MembershipForm>({
     resolver: zodResolver(membershipSchema),
+    defaultValues: {
+      fullName: '',
+      mobileNumber: '',
+      emailAddress: '',
+      gender: '',
+      dateOfBirth: '',
+      country: '',
+      state: '',
+      district: '',
+      city: '',
+      pinCode: '',
+      fullAddress: '',
+      nomineeName: '',
+      relationship: '',
+      nomineeMobile: '',
+      nomineeAddress: '',
+      aadharNumber: '',
+      panNumber: '',
+      accountHolder: '',
+      bankName: '',
+      accountNumber: '',
+      ifscCode: '',
+      upiId: '',
+    },
   });
+
+  const validateCurrentStep = (values: any) => {
+    switch (currentStep) {
+      case 1:
+        setIsValidStep(!!(
+          values.fullName && values.mobileNumber && values.emailAddress && 
+          values.gender && values.dateOfBirth
+        ));
+        break;
+      case 2:
+        setIsValidStep(!!(
+          values.country && values.state && values.district && 
+          values.city && values.pinCode && values.fullAddress
+        ));
+        break;
+      case 3:
+        setIsValidStep(!!(
+          values.nomineeName && values.relationship && 
+          values.nomineeMobile && values.nomineeAddress
+        ));
+        break;
+      case 4:
+        setIsValidStep(!!(
+          values.aadharNumber && values.panNumber
+        ));
+        break;
+      case 5:
+        setIsValidStep(!!(
+          values.accountHolder && values.bankName && 
+          values.accountNumber && values.ifscCode
+        ));
+        break;
+    }
+  };
 
   // Subscribe to form changes to validate current step
   useEffect(() => {
@@ -262,42 +320,6 @@ export default function MembershipFormPage() {
       </div>
     );
   }
-
-  const validateCurrentStep = (values: any) => {
-    switch (currentStep) {
-      case 1:
-        setIsValidStep(!!(
-          values.fullName && values.mobileNumber && values.emailAddress && 
-          values.gender && values.dateOfBirth
-        ));
-        break;
-      case 2:
-        setIsValidStep(!!(
-          values.country && values.state && values.district && 
-          values.city && values.pinCode && values.fullAddress
-        ));
-        break;
-      case 3:
-        setIsValidStep(!!(
-          values.nomineeName && values.relationship && 
-          values.nomineeMobile && values.nomineeAddress
-        ));
-        break;
-      case 4:
-        setIsValidStep(!!(
-          values.aadharNumber && values.panNumber
-        ));
-        break;
-      case 5:
-        setIsValidStep(!!(
-          values.accountHolder && values.bankName && 
-          values.accountNumber && values.ifscCode
-        ));
-        break;
-      default:
-        setIsValidStep(false);
-    }
-  };
 
   const handleNext = () => {
     console.log('Handle Next called, current step:', currentStep);
