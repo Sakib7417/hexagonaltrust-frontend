@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
+import { NewsTicker } from '@/components/ui/news-ticker';
 import {
   Shield,
   Users,
@@ -24,6 +25,9 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Navbar */}
       <Header />
+
+      {/* News Ticker */}
+      <NewsTicker language="en" />
 
       {/* Hero Section */}
       <section   className="

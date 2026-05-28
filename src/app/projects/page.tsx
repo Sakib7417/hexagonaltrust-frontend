@@ -62,7 +62,7 @@ export default function ProjectsPage() {
         <div className="max-w-5xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow">
             {/* Main Image Gallery */}
-            <div className="relative h-[500px] overflow-hidden group">
+            <div className="relative h-64 md:h-[500px] overflow-hidden group">
               <img
                 src={project.images[currentImageIndex]}
                 alt={`${project.title} - Image ${currentImageIndex + 1}`}
