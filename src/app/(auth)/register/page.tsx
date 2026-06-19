@@ -23,6 +23,7 @@ const registerSchema = z.object({
   country: z.string().min(2, 'Country is required'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
   confirmPassword: z.string(),
+  referredByCode: z.string().optional(), // Optional referral code
   termsAccepted: z.boolean().refine((val) => val === true, {
     message: 'You must accept the terms and conditions',
   }),
@@ -176,6 +177,22 @@ export default function RegisterPage() {
               </div>
               {errors.confirmPassword && (
                 <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="referredByCode">
+                Referral Code <span className="text-gray-500 text-xs">(Optional)</span>
+              </Label>
+              <Input
+                id="referredByCode"
+                type="text"
+                placeholder="Enter referral code (e.g., HEXA0001G)"
+                {...register('referredByCode')}
+                disabled={loading}
+              />
+              {errors.referredByCode && (
+                <p className="text-sm text-red-500">{errors.referredByCode.message}</p>
               )}
             </div>
 

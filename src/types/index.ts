@@ -117,3 +117,42 @@ export interface AdminDashboardStats {
     totalAmount: number;
   };
 }
+
+// Referral Types
+export interface ReferralInfo {
+  myCode: string;
+  directReferrals: User[];
+  directCount: number;
+  totalDownline: number;
+}
+
+export interface ReferralNode {
+  user: {
+    id: string;
+    uniqueId: string;
+    name: string;
+    email: string;
+    phone: string;
+    status: string;
+    createdAt: string;
+  };
+  level: number;
+  children: ReferralNode[];
+}
+
+export interface UserWithReferrals {
+  id: string;
+  uniqueId: string;
+  name: string;
+  email: string;
+  phone: string;
+  status: string;
+  createdAt: string;
+  referredBy?: {
+    id: string;
+    uniqueId: string;
+    name: string;
+  } | null;
+  directReferrals: number;
+  totalDownline: number;
+}

@@ -17,6 +17,7 @@ import {
   Shield,
   Newspaper,
   FileText,
+  Network,
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth.store';
 import { Button } from '@/components/ui/button';
@@ -26,6 +27,7 @@ const navItems = [
   { href: '/admin/users', label: 'Users', icon: Users },
   { href: '/admin/contributions', label: 'Contributions', icon: DollarSign },
   { href: '/admin/membership', label: 'Membership Forms', icon: FileText },
+  { href: '/admin/referrals', label: 'Referrals', icon: Network },
   { href: '/admin/withdraws', label: 'Withdrawals', icon: Send },
   { href: '/admin/rewards', label: 'Rewards', icon: Award },
   { href: '/admin/news', label: 'News Ticker', icon: Newspaper },

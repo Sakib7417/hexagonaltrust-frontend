@@ -8,6 +8,7 @@ export const authService = {
     phone: string;
     country: string;
     password: string;
+    referredByCode?: string;
   }) => {
     const response = await api.post<ApiResponse<{ user: User; token: string }>>(
       '/auth/register',
