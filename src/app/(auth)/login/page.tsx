@@ -17,7 +17,7 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 
 const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  identifier: z.string().min(1, 'Email or mobile number is required'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
@@ -40,7 +40,7 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginForm) => {
     try {
       setLoading(true);
-      const response = await authService.login(data.email, data.password);
+      const response = await authService.login(data.identifier, data.password);
       login(response.data.user, response.data.token, 'user');
       toast.success('Login successful!');
       router.push('/dashboard');
@@ -66,15 +66,15 @@ export default function LoginPage() {
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="identifier">Email or Mobile Number</Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                {...register('email')}
+                id="identifier"
+                type="text"
+                placeholder="Email or Mobile Number"
+                {...register('identifier')}
               />
-              {errors.email && (
-                <p className="text-sm text-red-500">{errors.email.message}</p>
+              {errors.identifier && (
+                <p className="text-sm text-red-500">{errors.identifier.message}</p>
               )}
             </div>
 

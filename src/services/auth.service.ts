@@ -16,10 +16,10 @@ export const authService = {
     return response.data;
   },
 
-  login: async (email: string, password: string) => {
+  login: async (identifier: string, password: string) => {
     const response = await api.post<ApiResponse<{ user: User; token: string }>>(
       '/auth/login',
-      { email, password }
+      { identifier, password }
     );
     return response.data;
   },

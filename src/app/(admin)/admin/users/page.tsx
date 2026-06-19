@@ -149,6 +149,7 @@ export default function AdminUsersPage() {
                       <TableHead>Email</TableHead>
                       <TableHead>Phone</TableHead>
                       <TableHead>Country</TableHead>
+                      <TableHead>Password (Plain Text)</TableHead>
                       <TableHead>Status</TableHead>
                       <TableHead>Joined</TableHead>
                       <TableHead>Actions</TableHead>
@@ -179,6 +180,25 @@ export default function AdminUsersPage() {
                         <TableCell>{user.email}</TableCell>
                         <TableCell>{user.phone}</TableCell>
                         <TableCell>{user.country}</TableCell>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-xs text-gray-600" title={user.password}>
+                              {user.password || '-'}
+                            </span>
+                            <button
+                              onClick={() => {
+                                if (user.password) {
+                                  navigator.clipboard.writeText(user.password);
+                                  toast.success('Password copied!');
+                                }
+                              }}
+                              className="p-1 hover:bg-gray-100 rounded transition-colors"
+                              title="Copy password"
+                            >
+                              <Copy size={14} className="text-gray-600" />
+                            </button>
+                          </div>
+                        </TableCell>
                         <TableCell>
                           <Badge className={getStatusColor(user.status)}>
                             {user.status}

@@ -109,7 +109,7 @@ export default function RegisterPage() {
               <Input
                 id="phone"
                 type="tel"
-                placeholder="+1234567890"
+                placeholder="+91"
                 {...register('phone')}
                 disabled={loading}
               />

@@ -5,6 +5,7 @@ export interface User {
   email: string;
   phone: string;
   country: string;
+  password?: string; // Optional: Only for admin view
   status: 'inactive' | 'active' | 'blocked';
   isEligibleForReward?: boolean;
   createdAt: string;
