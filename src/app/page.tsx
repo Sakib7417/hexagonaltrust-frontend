@@ -30,18 +30,8 @@ export default function HomePage() {
       <NewsTicker language="en" />
 
       {/* Hero Section */}
-      <section   className="
-    min-h-screen
-    flex items-center
-    px-4
-    bg-cover
-    bg-center
-    bg-no-repeat
-  "
-  style={{
-    backgroundImage: "url('/Herobg.png')",
-  }}>
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="min-h-screen flex items-center px-4 bg-[url('/Herobgmob.png')] bg-[length:100%_auto] bg-top bg-no-repeat md:bg-cover md:bg-center md:bg-[url('/Herobg.png')]">
+        {/* <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             An Exclusive Community-Driven Program
             <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
@@ -79,7 +69,7 @@ export default function HomePage() {
               </Button>
             </Link>
           </div>
-        </div>
+        </div> */}
       </section>
 
       {/* Features Section */}
@@ -88,6 +78,9 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
             Why Choose Hexagonal Trust?
           </h2>
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+            A trusted community program built to deliver health, education, employment and meaningful growth.
+          </p>
          <Swiper
   modules={[Autoplay]}
   spaceBetween={30}

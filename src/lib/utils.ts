@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hexagonaltrust-production.up.railway.app/api/v1';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV === 'development' ? '/api/v1' : 'https://hexagonaltrust-production.up.railway.app/api/v1');
 export const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://hexagonaltrust-production.up.railway.app';
 
 export const CONSTANTS = {
