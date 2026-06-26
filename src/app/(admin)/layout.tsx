@@ -48,6 +48,16 @@ export default function AdminLayout({
     window.location.href = '/admin/login';
   };
 
+  const isLoginPage = pathname === '/admin/login';
+
+  if (isLoginPage) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Mobile Menu Toggle */}
