@@ -20,7 +20,7 @@ export default function CommitteePage() {
     try {
       setLoading(true);
       const response = await committeeService.getCommitteeStatus();
-      setCommitteeStatus(response.data);
+      setCommitteeStatus(response);
     } catch (error: any) {
       toast.error(error.message || 'Failed to load committee status');
     } finally {

@@ -21,7 +21,7 @@ export default function AdminSettingsPage() {
   const fetchSettings = async () => {
     try {
       const response = await adminService.getSettings();
-      setUpiId(response.data.upiId || '');
+      setUpiId(response.upiId || '');
     } catch (error: any) {
       toast.error(error.message || 'Failed to fetch settings');
     } finally {

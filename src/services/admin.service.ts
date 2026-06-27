@@ -51,7 +51,7 @@ export const adminService = {
     const response = await api.get<ApiResponse<Contribution[]>>(
       `/admin/contributions?${params}`
     );
-    return response.data.data;
+    return { data: response.data.data, pagination: response.data.pagination };
   },
 
   approveContribution: async (id: string) => {
@@ -78,7 +78,7 @@ export const adminService = {
     const response = await api.get<ApiResponse<WithdrawRequest[]>>(
       `/admin/withdraws?${params}`
     );
-    return response.data.data;
+    return { data: response.data.data, pagination: response.data.pagination };
   },
 
   approveWithdraw: async (id: string, paymentTransactionId: string) => {
@@ -106,7 +106,7 @@ export const adminService = {
     const response = await api.get<ApiResponse<Reward[]>>(
       `/admin/rewards?${params}`
     );
-    return response.data.data;
+    return { data: response.data.data, pagination: response.data.pagination };
   },
 
   getSettings: async () => {

@@ -23,7 +23,7 @@ export default function CommitteeStatisticsPage() {
     try {
       setLoading(true);
       const response = await committeeService.getCommitteeStatistics();
-      setStatistics(response.data);
+      setStatistics(response);
     } catch (error: any) {
       toast.error(error.message || 'Failed to load committee statistics');
     } finally {

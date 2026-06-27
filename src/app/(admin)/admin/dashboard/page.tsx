@@ -26,7 +26,7 @@ export default function AdminDashboardPage() {
   const fetchStats = async () => {
     try {
       const response = await adminService.getDashboardStats();
-      setStats(response.data);
+      setStats(response);
     } catch (error: any) {
       console.error('Failed to fetch stats:', error.message || error);
     } finally {
