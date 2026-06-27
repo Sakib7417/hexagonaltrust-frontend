@@ -30,7 +30,7 @@ export default function HomePage() {
       <NewsTicker language="en" />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center px-4 bg-[url('/Herobgmob.png')] bg-[length:100%_auto] bg-top bg-no-repeat md:bg-cover md:bg-center md:bg-[url('/Herobg.png')]">
+      <section className="min-h-screen flex items-center px-4 bg-[url('/HerobgMob.png')] bg-[length:100%_auto] bg-top bg-no-repeat md:bg-cover md:bg-center md:bg-[url('/Herobg.png')]">
         {/* <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             An Exclusive Community-Driven Program
@@ -81,79 +81,79 @@ export default function HomePage() {
           <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
             A trusted community program built to deliver health, education, employment and meaningful growth.
           </p>
-         <Swiper
-  modules={[Autoplay]}
-  spaceBetween={30}
-  slidesPerView={1}
-  loop={true}
-  autoplay={{
-    delay: 2500,
-    disableOnInteraction: false,
-  }}
-  breakpoints={{
-    640: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-  }}
->
-  <SwiperSlide>
-     {/* Smart Contributions */}
-            <div className="p-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-16 w-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
-                <Target size={32} className="text-white" />
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+          >
+            <SwiperSlide>
+              {/* Smart Contributions */}
+              <div className="p-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="h-16 w-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                  <Target size={32} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Clear Objective</h3>
+                <p className="text-gray-600">
+                  Focused on creating meaningful impact through health, education, and employment initiatives.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Clear Objective</h3>
-              <p className="text-gray-600">
-              Focused on creating meaningful impact through health, education, and employment initiatives.
-              </p>
-            </div>
-  </SwiperSlide>
-           
-<SwiperSlide> 
-            {/* Weekly Rewards */}
-            <div className="p-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-16 w-16 bg-green-600 rounded-xl flex items-center justify-center mb-6">
-                <Eye size={32} className="text-white" />
+            </SwiperSlide>
+
+            <SwiperSlide>
+              {/* Weekly Rewards */}
+              <div className="p-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="h-16 w-16 bg-green-600 rounded-xl flex items-center justify-center mb-6">
+                  <Eye size={32} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Transparency</h3>
+                <p className="text-gray-600">
+                  Maintaining complete openness in contributions, member activities, and reward distribution.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Transparency</h3>
-              <p className="text-gray-600">
-              Maintaining complete openness in contributions, member activities, and reward distribution.
-              </p>
-            </div>
-</SwiperSlide>
-<SwiperSlide>
-            {/* Quick Withdrawals */}
-            <div className="p-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-16 w-16 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
-                <ShieldCheck size={32} className="text-white" />
+            </SwiperSlide>
+            <SwiperSlide>
+              {/* Quick Withdrawals */}
+              <div className="p-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="h-16 w-16 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                  <ShieldCheck size={32} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Accountability</h3>
+                <p className="text-gray-600">
+                  Ensuring responsible management, ethical operations, and community trust at every step.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Accountability</h3>
-              <p className="text-gray-600">
-                Ensuring responsible management, ethical operations, and community trust at every step.
-              </p>
-            </div>
-</SwiperSlide>
-<SwiperSlide>
-             {/* Long term stability */}
-            <div className="p-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-16 w-16 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
-                <TrendingUp size={32} className="text-white" />
+            </SwiperSlide>
+            <SwiperSlide>
+              {/* Long term stability */}
+              <div className="p-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="h-16 w-16 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                  <TrendingUp size={32} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Long-term Stability</h3>
+                <p className="text-gray-600">
+                  Helping people create a stable and better future through long-term community growth.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Long-term Stability</h3>
-              <p className="text-gray-600">
-               Helping people create a stable and better future through long-term community growth.
-              </p>
-            </div>
-</SwiperSlide>
-</Swiper> 
-          </div>
-          </section>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
 
       {/* How It Works */}
       <section className="py-20 px-4 bg-gray-50">
@@ -207,11 +207,11 @@ export default function HomePage() {
             Ready to Be the part of Hexagonal?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-           Be a part of a growing community joining hands to support better health, quality education, and employment opportunities for a brighter future together.
+            Be a part of a growing community joining hands to support better health, quality education, and employment opportunities for a brighter future together.
           </p>
           <Link href="/register">
             <Button size="lg" variant="secondary" className="px-8 py-6 text-lg">
-             Become a part of Hexagonal
+              Become a part of Hexagonal
               <ArrowRight className="ml-2" size={20} />
             </Button>
           </Link>
