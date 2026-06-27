@@ -41,6 +41,14 @@ export default function ReferralsPage() {
     }
   };
 
+  const copyReferralLink = () => {
+    if (referralInfo?.myCode) {
+      const referralLink = `${window.location.origin}/register?ref=${referralInfo.myCode}`;
+      navigator.clipboard.writeText(referralLink);
+      toast.success('Referral link copied!');
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -64,7 +72,7 @@ export default function ReferralsPage() {
             Your Referral Code
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-3xl font-bold font-mono">{referralInfo?.myCode}</p>
@@ -78,6 +86,23 @@ export default function ReferralsPage() {
               <Copy size={18} />
               Copy Code
             </Button>
+          </div>
+          
+          <div className="border-t border-purple-400/30 pt-4">
+            <p className="text-sm text-purple-100 mb-2">Or share your referral link:</p>
+            <div className="flex items-center gap-2">
+              <div className="flex-1 bg-white/10 rounded-lg px-3 py-2 text-sm font-mono truncate">
+                {window.location.origin}/register?ref={referralInfo?.myCode}
+              </div>
+              <Button
+                onClick={copyReferralLink}
+                variant="secondary"
+                className="gap-2"
+              >
+                <Copy size={18} />
+                Copy Link
+              </Button>
+            </div>
           </div>
         </CardContent>
       </Card>

@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { contributionService } from '@/services/contribution.service';
 import { withdrawService } from '@/services/withdraw.service';
+import { userService } from '@/services/user.service';
 import { Calendar, DollarSign, Send, Award } from 'lucide-react';
 import { format } from 'date-fns';
 import type { Contribution, WithdrawRequest, Reward } from '@/types';
@@ -24,13 +25,15 @@ export default function HistoryPage() {
   const fetchAllHistory = async () => {
     try {
       setLoading(true);
-      const [contribRes, withdrawRes] = await Promise.all([
+      const [contribRes, withdrawRes, rewardsRes] = await Promise.all([
         contributionService.getMyContributions(1, 50),
         withdrawService.getMyWithdraws(1, 50),
+        userService.getRewards(1, 100),
       ]);
 
       setContributions(contribRes.data);
       setWithdraws(withdrawRes.data);
+      setRewards(rewardsRes.data);
     } catch (error) {
       console.error('Failed to fetch history');
     } finally {
@@ -49,6 +52,16 @@ export default function HistoryPage() {
         return 'bg-red-100 text-red-700';
       default:
         return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'credited': return 'Completed';
+      case 'pending': return 'Pending';
+      case 'approved': return 'Approved';
+      case 'rejected': return 'Rejected';
+      default: return status;
     }
   };
 
@@ -219,7 +232,7 @@ export default function HistoryPage() {
                           </TableCell>
                           <TableCell>
                             <Badge className={getStatusColor(reward.status)}>
-                              {reward.status}
+                              {getStatusLabel(reward.status)}
                             </Badge>
                           </TableCell>
                         </TableRow>

@@ -155,7 +155,7 @@ export default function CalendarPage() {
                         {payment.status === 'paid' ? (
                           <>
                             <CheckCircle size={14} className="mr-1" />
-                            Paid
+                            Completed
                           </>
                         ) : (
                           <>

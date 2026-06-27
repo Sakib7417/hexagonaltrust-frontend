@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -36,6 +36,7 @@ type RegisterForm = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const login = useAuthStore((state) => state.login);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -45,9 +46,17 @@ export default function RegisterPage() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<RegisterForm>({
     resolver: zodResolver(registerSchema),
   });
+
+  useEffect(() => {
+    const referralCode = searchParams.get('ref');
+    if (referralCode) {
+      setValue('referredByCode', referralCode);
+    }
+  }, [searchParams, setValue]);
 
   const onSubmit = async (data: RegisterForm) => {
     try {

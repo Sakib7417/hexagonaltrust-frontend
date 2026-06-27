@@ -7,6 +7,7 @@ export interface User {
   country: string;
   password?: string; // Optional: Only for admin view
   status: 'inactive' | 'active' | 'blocked';
+  currentCommittee?: 'NONE' | 'SUPER' | 'CORE';
   isEligibleForReward?: boolean;
   createdAt: string;
   updatedAt: string;
@@ -156,3 +157,79 @@ export interface UserWithReferrals {
   directReferrals: number;
   totalDownline: number;
 }
+
+// Committee Types
+export interface CommitteeStatus {
+  committee: 'NONE' | 'SUPER' | 'CORE';
+}
+
+export interface CommitteeDashboard {
+  superCommittee: {
+    occupiedSlots: number;
+    remainingSlots: number;
+    maxSlots: number;
+    members: CommitteeMember[];
+  };
+  coreCommittee: {
+    occupiedSlots: number;
+    remainingSlots: number;
+    maxSlots: number;
+    members: CommitteeMember[];
+  };
+}
+
+export interface CommitteeMember {
+  id: string;
+  uniqueId: string;
+  name: string;
+  email: string;
+  phone: string;
+  status: string;
+  createdAt: string;
+  directReferrals: number;
+  totalDownline: number;
+}
+
+export interface CommitteeStatistics {
+  totalUsers: number;
+  committeeDistribution: {
+    none: number;
+    super: number;
+    core: number;
+  };
+  superCommittee: {
+    occupied: number;
+    remaining: number;
+    max: number;
+    fillPercentage: number;
+  };
+  coreCommittee: {
+    occupied: number;
+    remaining: number;
+    max: number;
+    fillPercentage: number;
+  };
+  recentPromotions: CommitteePromotion[];
+}
+
+export interface CommitteePromotion {
+  id: string;
+  newCommittee: 'SUPER' | 'CORE';
+  promotedAt: string;
+  user: {
+    id: string;
+    uniqueId: string;
+    name: string;
+  };
+}
+
+export interface CommitteeHistory {
+  id: string;
+  userId: string;
+  previousCommittee: 'NONE' | 'SUPER' | 'CORE';
+  newCommittee: 'NONE' | 'SUPER' | 'CORE';
+  promotedAt: string;
+  directReferralCount: number;
+  totalDownline: number;
+}
+

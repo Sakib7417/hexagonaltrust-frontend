@@ -32,10 +32,8 @@ export default function AdminUsersPage() {
     try {
       setLoading(true);
       const response = await adminService.getUsers(page, 20, filter === 'all' ? undefined : filter, search);
-      setUsers(response.data);
-      if (response.pagination) {
-        setTotalPages(response.pagination.totalPages);
-      }
+      setUsers(response);
+      // Note: Pagination is not returned by the updated service
     } catch (error: any) {
       toast.error(error.message || 'Failed to fetch users');
     } finally {
