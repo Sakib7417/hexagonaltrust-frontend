@@ -5,16 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-<<<<<<< HEAD
 // export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hexagonaltrust-production.up.railway.app/api/v1';
 // export const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://hexagonaltrust-production.up.railway.app';
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
-export const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
-=======
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV === 'development' ? '/api/v1' : 'https://hexagonaltrust-production.up.railway.app/api/v1');
 export const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://hexagonaltrust-production.up.railway.app';
->>>>>>> update
 
 export const CONSTANTS = {
   MIN_CONTRIBUTION: 25000,
