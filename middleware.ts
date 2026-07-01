@@ -6,10 +6,10 @@ const publicRoutes = ['/', '/login', '/register', '/admin/login', '/about', '/pr
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  
+
   // Get token from cookies
   const token = request.cookies.get('token')?.value;
-  
+
   // Get role from cookies (if available)
   const role = request.cookies.get('role')?.value;
 
@@ -54,6 +54,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public folder
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|pdf)$).*)',
   ],
 };
