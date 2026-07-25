@@ -23,7 +23,7 @@ export const adminService = {
       ...(search && { search }),
     });
     const response = await api.get<ApiResponse<User[]>>(`/admin/users?${params}`);
-    return response.data.data;
+    return { data: response.data.data, pagination: response.data.pagination };
   },
 
   getUser: async (id: string) => {
