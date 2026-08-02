@@ -79,19 +79,21 @@ export default function HistoryPage() {
 
       <Tabs defaultValue="contributions" className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="contributions">
-            <DollarSign size={16} className="mr-2" />
-            Contributions
-          </TabsTrigger>
-          <TabsTrigger value="withdrawals">
-            <Send size={16} className="mr-2" />
-            Withdrawals
-          </TabsTrigger>
-          <TabsTrigger value="rewards">
-            <Award size={16} className="mr-2" />
-            Rewards
-          </TabsTrigger>
-        </TabsList>
+  <TabsTrigger value="contributions">
+    <DollarSign size={16} className="mr-2" />
+    Contributions
+  </TabsTrigger>
+
+  <TabsTrigger value="withdrawals">
+    <Send size={16} className="mr-2" />
+    Withdrawals
+  </TabsTrigger>
+
+  <TabsTrigger value="rewards">
+    <Award size={16} className="mr-2" />
+    Advertisement Costs
+  </TabsTrigger>
+</TabsList>
 
         {/* Contributions Tab */}
         <TabsContent value="contributions" className="mt-6">
@@ -201,7 +203,7 @@ export default function HistoryPage() {
         <TabsContent value="rewards" className="mt-6">
           <Card>
             <CardHeader>
-              <CardTitle>Reward History</CardTitle>
+              <CardTitle>Advertisement Costs History</CardTitle>
             </CardHeader>
             <CardContent>
               {rewards.length > 0 ? (
@@ -243,9 +245,9 @@ export default function HistoryPage() {
               ) : (
                 <div className="text-center py-8">
                   <Award size={48} className="mx-auto text-gray-400 mb-2" />
-                  <p className="text-gray-500">No rewards found</p>
+                  <p className="text-gray-500">No advertisement costs found</p>
                   <p className="text-sm text-gray-400 mt-1">
-                    Rewards are generated weekly after eligibility
+                    advertisement costs are generated weekly after eligibility
                   </p>
                 </div>
               )}

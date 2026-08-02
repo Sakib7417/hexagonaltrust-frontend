@@ -89,7 +89,7 @@ We believe that when people join hands together, real change becomes possible..
             </div>
             <div className="text-center p-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
               <div className="text-5xl font-bold text-green-600 mb-2">₹25M+</div>
-              <div className="text-gray-600 text-lg">Rewards Distributed</div>
+              <div className="text-gray-600 text-lg">advertisement Costs Distributed</div>
             </div>
             <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
               <div className="text-5xl font-bold text-purple-600 mb-2">99.9%</div>
@@ -106,7 +106,7 @@ We believe that when people join hands together, real change becomes possible..
             Join Our Growing Community
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Start your journey towards consistent weekly rewards
+            Start your journey towards consistent weekly advertisement costs
           </p>
           <Link href="/register">
             <Button size="lg" variant="secondary" className="px-8 py-6 text-lg">

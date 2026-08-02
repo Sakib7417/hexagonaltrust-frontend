@@ -379,7 +379,7 @@ export default function ProfilePage() {
             </div>
 
             <div className="p-4 bg-green-50 rounded-lg">
-              <p className="text-sm text-green-600">Total Rewards</p>
+              <p className="text-sm text-green-600">Total Advertisement Costs</p>
               <p className="text-2xl font-bold text-green-900">
                 ₹{dashboard?.wallet.totalRewards || 0}
               </p>

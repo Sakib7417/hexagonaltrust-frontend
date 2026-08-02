@@ -23,6 +23,7 @@ export default function AdminDashboardPage() {
     fetchStats();
   }, []);
 
+
   const fetchStats = async () => {
     try {
       const response = await adminService.getDashboardStats();
@@ -105,14 +106,14 @@ export default function AdminDashboardPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Rewards Distributed</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Advertisements cost Distributed</CardTitle>
             <Award className="h-4 w-4 text-purple-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-purple-600">
               ₹{stats?.rewards.totalDistributed || 0}
             </div>
-            <p className="text-xs text-muted-foreground">Lifetime rewards</p>
+            <p className="text-xs text-muted-foreground">Lifetime advertisement costs</p>
           </CardContent>
         </Card>
 
@@ -148,11 +149,23 @@ export default function AdminDashboardPage() {
             </a>
             <a
               href="/admin/withdraws"
+              onClick={() => localStorage.setItem("withdrawFilter", "pending")}
               className="block p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
             >
               <p className="font-medium text-green-900">Process Withdrawals</p>
               <p className="text-sm text-green-700">
                 {stats?.withdraws.pending || 0} pending requests
+              </p>
+            </a>
+
+            <a
+              href="/admin/withdraws"
+              onClick={() => localStorage.setItem("withdrawFilter", "approved")}
+              className="block p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
+            >
+              <p className="font-medium text-green-900">completed Withdrawals</p>
+              <p className="text-sm text-green-700">
+                {stats?.withdraws.approved || 0} completed requests
               </p>
             </a>
           </CardContent>
@@ -185,3 +198,11 @@ export default function AdminDashboardPage() {
     </div>
   );
 }
+// function setPage(arg0: number) {
+//   throw new Error('Function not implemented.');
+// }
+
+// function setFilter(status: string) {
+//   throw new Error('Function not implemented.');
+// }
+

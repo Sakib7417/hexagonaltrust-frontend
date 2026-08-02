@@ -78,7 +78,7 @@ export default function RegisterFormComponent() {
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">Create Account</CardTitle>
           <CardDescription className="text-center">
-            Join the platform and start earning rewards
+            Join the platform and start earning advertisement costs
           </CardDescription>
         </CardHeader>
         <CardContent>

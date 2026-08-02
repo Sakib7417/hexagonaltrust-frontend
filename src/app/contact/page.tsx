@@ -180,7 +180,7 @@ export default function ContactPage() {
             Ready to Join Hexagonal Trust?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Start earning weekly rewards today
+            Start earning weekly advertisement costs today
           </p>
           <Link href="/register">
             <Button size="lg" variant="secondary" className="px-8 py-6 text-lg">

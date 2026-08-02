@@ -83,15 +83,15 @@ export default function AdminRewardsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Rewards</h1>
-        <p className="text-gray-600 mt-1">View all distributed rewards</p>
+        <h1 className="text-3xl font-bold text-gray-900">Advertisement Costs</h1>
+        <p className="text-gray-600 mt-1">View all distributed Advertisement costs</p>
       </div>
 
       <Card>
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <CardTitle>
-              Reward History
+              Advertisement Costs History
               <span className="text-sm font-normal text-gray-500 ml-2">
                 ({totalCount})
               </span>
@@ -237,7 +237,7 @@ export default function AdminRewardsPage() {
           ) : (
             <div className="text-center py-8">
               <Award size={48} className="mx-auto text-gray-400 mb-2" />
-              <p className="text-gray-500">No rewards found</p>
+              <p className="text-gray-500">No advertisement costs found</p>
               {hasActiveFilters && (
                 <p className="text-sm text-gray-400 mt-1">
                   Try clearing the filters

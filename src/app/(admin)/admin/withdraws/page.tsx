@@ -9,12 +9,18 @@ import { adminService } from '@/services/admin.service';
 import { CheckCircle, XCircle, Clock, Search } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+// import { useSearchParams } from "next/navigation";
 import type { WithdrawRequest } from '@/types';
 
 export default function AdminWithdrawsPage() {
   const [withdraws, setWithdraws] = useState<WithdrawRequest[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<string>('pending');
+
+  // const searchParams = useSearchParams();
+//   const [filter, setFilter] = useState(
+//   searchParams.get("status") || "all"
+// );
+const [filter, setFilter] = useState<string>("");
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -24,9 +30,22 @@ export default function AdminWithdrawsPage() {
   const [selectedWithdraw, setSelectedWithdraw] = useState<WithdrawRequest | null>(null);
 
   useEffect(() => {
+    console.log("Stored filter:", localStorage.getItem("withdrawFilter"));
+  }, []);
+
+  useEffect(() => {
     fetchWithdraws();
   }, [filter, page]);
 
+  useEffect(() => {
+  const status = localStorage.getItem("withdrawFilter");
+
+  if (status) {
+    setFilter(status);
+    setPage(1);
+    localStorage.removeItem("withdrawFilter");
+  }
+}, []);
   const fetchWithdraws = async () => {
     try {
       setLoading(true);

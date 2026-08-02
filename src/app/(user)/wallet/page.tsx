@@ -75,14 +75,14 @@ export default function WalletPage() {
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Award size={18} />
-              Total Rewards
+              Total Adv. Costs
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               ₹{dashboard?.wallet.totalRewards || 0}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Lifetime rewards</p>
+            <p className="text-xs text-muted-foreground mt-1">Lifetime advertisement costs</p>
           </CardContent>
         </Card>
 
@@ -112,7 +112,7 @@ export default function WalletPage() {
             <div className="text-2xl font-bold">
               {dashboard?.rewardCount || 0}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Weekly rewards received</p>
+            <p className="text-xs text-muted-foreground mt-1">Weekly advertisement costs received</p>
           </CardContent>
         </Card>
       </div>
@@ -159,7 +159,7 @@ export default function WalletPage() {
       {/* Reward History */}
       <Card>
         <CardHeader>
-          <CardTitle>Reward History</CardTitle>
+          <CardTitle>Advertisement Costs History</CardTitle>
         </CardHeader>
         <CardContent>
           {rewardsLoading ? (
@@ -208,7 +208,7 @@ export default function WalletPage() {
               {totalPages > 1 && (
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-gray-600">
-                    Showing {(page - 1) * 10 + 1} to {Math.min(page * 10, rewards.length)} rewards
+                    Showing {(page - 1) * 10 + 1} to {Math.min(page * 10, rewards.length)} advertisement costs
                   </p>
                   <div className="flex gap-2">
                     <button
@@ -232,9 +232,9 @@ export default function WalletPage() {
           ) : (
             <div className="text-center py-8">
               <Award size={48} className="mx-auto text-gray-400 mb-2" />
-              <p className="text-gray-500">No rewards yet</p>
+              <p className="text-gray-500">No advertisement costs yet</p>
               <p className="text-sm text-gray-400 mt-1">
-                Rewards are generated weekly after eligibility
+                Advertisement costs are generated weekly after eligibility
               </p>
             </div>
           )}
