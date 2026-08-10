@@ -179,7 +179,7 @@ export default function AdminContributionsPage() {
                         <TableCell>
                           <div>
                             <p className="font-medium">{contrib.user?.name || 'N/A'}</p>
-                            <p className="text-sm text-gray-500">{contrib.user?.email}</p>
+                            <p className="text-sm text-gray-500">{contrib.user?.phone || 'N/A'}</p>
                           </div>
                         </TableCell>
                         <TableCell className="font-semibold">₹{contrib.amount}</TableCell>
