@@ -146,7 +146,7 @@ export default function DashboardPage() {
         {/* Total Rewards */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Rewards</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Advertisement Costs</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -154,7 +154,7 @@ export default function DashboardPage() {
               ₹{dashboard?.totalRewards || 0}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              From {dashboard?.rewardCount || 0} weekly rewards
+              From {dashboard?.rewardCount || 0} weekly advertisement costs
             </p>
           </CardContent>
         </Card>

@@ -166,7 +166,7 @@ export default function HomePage() {
               { step: '1', title: 'Register', desc: 'Create your account in seconds' },
               { step: '2', title: 'Contribute', desc: 'Make your contribution to become a part of HexaGonal' },
               { step: '3', title: 'Get Ad Cost', desc: 'Receive advertisement cost benefits every week for 100 weeks' },
-              { step: '4', title: 'Promotional Benefits', desc: 'Enjoy exclusive promotional rewards and opportunities.' },
+              { step: '4', title: 'Promotional Benefits', desc: 'Enjoy exclusive promotional advertisements & costs and opportunities.' },
             ].map((item) => (
               <div key={item.step} className="text-center">
                 <div className="h-16 w-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">

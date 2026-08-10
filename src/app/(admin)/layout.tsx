@@ -31,7 +31,7 @@ const navItems = [
   { href: '/admin/referrals', label: 'Referrals', icon: Network },
   { href: '/admin/committee', label: 'Committee', icon: Crown },
   { href: '/admin/withdraws', label: 'Withdrawals', icon: Send },
-  { href: '/admin/rewards', label: 'Rewards', icon: Award },
+  { href: '/admin/rewards', label: 'Advertisement Costs', icon: Award },
   { href: '/admin/news', label: 'News Ticker', icon: Newspaper },
   { href: '/admin/settings', label: 'Settings', icon: Settings },
 ];

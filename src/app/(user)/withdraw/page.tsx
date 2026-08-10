@@ -48,6 +48,7 @@ export default function WithdrawPage() {
     fetchWithdraws();
   }, [page]);
 
+
   const fetchWithdraws = async () => {
     try {
       const response = await withdrawService.getMyWithdraws(page, 10);
