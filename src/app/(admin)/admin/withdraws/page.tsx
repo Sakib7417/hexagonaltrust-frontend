@@ -206,7 +206,7 @@ const [filter, setFilter] = useState<string>("");
                         <TableCell>
                           <div>
                             <p className="font-medium">{withdraw.user?.name || 'N/A'}</p>
-                            <p className="text-sm text-gray-500">{withdraw.user?.email}</p>
+                            <p className="text-sm text-gray-500">{withdraw.user?.phone}</p>
                           </div>
                         </TableCell>
                         <TableCell className="font-semibold">₹{withdraw.amount}</TableCell>
