@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -19,6 +20,7 @@ import { toast } from "sonner";
 import type { User } from "@/types";
 
 export default function AdminUsersPage() {
+  const router = useRouter();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -222,9 +224,14 @@ export default function AdminUsersPage() {
                         <TableCell>
                           {user.uniqueId ? (
                             <div className="flex items-center gap-2">
-                              <span className="font-mono font-bold text-purple-600">
+                              <button
+                                type="button"
+                                onClick={() => router.push(`/admin/users/${user.id}/withdrawals`)}
+                                className="font-mono font-bold text-purple-600 transition-colors hover:text-purple-900 hover:opacity-80"
+                                title="View withdrawal history"
+                              >
                                 {user.uniqueId}
-                              </span>
+                              </button>
                               <button
                                 onClick={() => copyUniqueId(user.uniqueId!)}
                                 className="p-1 hover:bg-purple-100 rounded transition-colors"

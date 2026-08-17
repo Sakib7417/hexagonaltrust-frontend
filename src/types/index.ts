@@ -1,3 +1,12 @@
+export interface MembershipDetails {
+  id?: string;
+  accountHolder?: string;
+  bankName?: string;
+  accountNumber?: string;
+  ifscCode?: string;
+  upiId?: string;
+}
+
 export interface User {
   id: string;
   uniqueId: string;
@@ -9,6 +18,7 @@ export interface User {
   status: 'inactive' | 'active' | 'blocked';
   currentCommittee?: 'NONE' | 'SUPER' | 'CORE';
   isEligibleForReward?: boolean;
+  membership?: MembershipDetails;
   createdAt: string;
   updatedAt: string;
 }
@@ -59,9 +69,14 @@ export interface WithdrawRequest {
   upiId: string;
   status: 'pending' | 'approved' | 'rejected';
   paymentTransactionId?: string;
+  accountHolder?: string;
+  bankName?: string;
+  accountNumber?: string;
+  ifscCode?: string;
   createdAt: string;
   updatedAt: string;
   user?: User;
+  member?: MembershipDetails;
 }
 
 export interface AdminSettings {

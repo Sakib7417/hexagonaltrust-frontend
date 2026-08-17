@@ -18,6 +18,7 @@ export default function AdminContributionsPage() {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [userLookup, setUserLookup] = useState<Record<string, { uniqueId?: string }>>({});
 
   useEffect(() => {
     fetchContributions();
@@ -34,10 +35,22 @@ export default function AdminContributionsPage() {
   const fetchContributions = async () => {
     try {
       setLoading(true);
-      const response = await adminService.getContributions(page, 20, filter);
-      setContributions(response.data);
-      if (response.pagination) {
-        setTotalPages(response.pagination.totalPages);
+      const [contributionResponse, usersResponse] = await Promise.all([
+        adminService.getContributions(page, 20, filter),
+        adminService.getUsers(1, 500),
+      ]);
+
+      const lookup: Record<string, { uniqueId?: string }> = {};
+      (usersResponse.data || []).forEach((user) => {
+        if (user.id) {
+          lookup[user.id] = { uniqueId: user.uniqueId };
+        }
+      });
+
+      setUserLookup(lookup);
+      setContributions(contributionResponse.data);
+      if (contributionResponse.pagination) {
+        setTotalPages(contributionResponse.pagination.totalPages);
       }
     } catch (error: any) {
       toast.error(error.message || 'Failed to fetch contributions');
@@ -92,12 +105,22 @@ export default function AdminContributionsPage() {
     }
   };
 
+  const getUniqueId = (contrib: Contribution) => {
+    return (
+      userLookup[contrib.userId]?.uniqueId ||
+      userLookup[contrib.user?.id || '']?.uniqueId ||
+      contrib.user?.uniqueId ||
+      'N/A'
+    );
+  };
+
   const filteredContributions = contributions.filter((c) => {
     if (search) {
       return (
         c.transactionId.toLowerCase().includes(search.toLowerCase()) ||
         c.user?.name.toLowerCase().includes(search.toLowerCase()) ||
-        c.user?.email.toLowerCase().includes(search.toLowerCase())
+        c.user?.email.toLowerCase().includes(search.toLowerCase()) ||
+        getUniqueId(c).toLowerCase().includes(search.toLowerCase())
       );
     }
     return true;
@@ -188,6 +211,7 @@ export default function AdminContributionsPage() {
                 <Table>
                   <TableHeader>
                     <TableRow>
+                      <TableHead>Unique ID</TableHead>
                       <TableHead>User</TableHead>
                       <TableHead>Amount</TableHead>
                       <TableHead>Transaction ID</TableHead>
@@ -199,6 +223,9 @@ export default function AdminContributionsPage() {
                   <TableBody>
                     {filteredContributions.map((contrib) => (
                       <TableRow key={contrib.id}>
+                        <TableCell className="font-mono text-sm font-semibold text-purple-700">
+                          {getUniqueId(contrib)}
+                        </TableCell>
                         <TableCell>
                           <div>
                             <p className="font-medium">{contrib.user?.name || 'N/A'}</p>

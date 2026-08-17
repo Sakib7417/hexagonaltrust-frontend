@@ -130,15 +130,24 @@ export default function AdminMembershipPage() {
                           {format(new Date(membership.createdAt), 'MMM dd, yyyy')}
                         </TableCell>
                         <TableCell>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => router.push(`/admin/membership/${membership.id}`)}
-                            className="gap-2"
-                          >
-                            <Eye size={16} />
-                            View
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => router.push(`/admin/membership/${membership.id}`)}
+                              className="gap-2"
+                            >
+                              <Eye size={16} />
+                              View
+                            </Button>
+                            <Button
+                              size="sm"
+                              onClick={() => router.push(`/admin/membership/${membership.id}/edit`)}
+                              className="bg-purple-600 hover:bg-purple-700"
+                            >
+                              Edit
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}

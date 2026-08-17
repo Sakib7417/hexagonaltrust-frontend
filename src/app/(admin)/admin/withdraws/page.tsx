@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { adminService } from '@/services/admin.service';
+import { membershipService } from '@/services/membership.service';
 import { CheckCircle, XCircle, Clock, Search } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
@@ -13,6 +15,7 @@ import { toast } from 'sonner';
 import type { WithdrawRequest } from '@/types';
 
 export default function AdminWithdrawsPage() {
+  const router = useRouter();
   const [withdraws, setWithdraws] = useState<WithdrawRequest[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +31,8 @@ const [filter, setFilter] = useState<string>("");
   const [transactionId, setTransactionId] = useState('');
   const [showApproveModal, setShowApproveModal] = useState(false);
   const [selectedWithdraw, setSelectedWithdraw] = useState<WithdrawRequest | null>(null);
+  const [membershipLookup, setMembershipLookup] = useState<Record<string, any>>({});
+  const [memberLookup, setMemberLookup] = useState<Record<string, { uniqueId?: string }>>({});
 
   useEffect(() => {
     console.log("Stored filter:", localStorage.getItem("withdrawFilter"));
@@ -49,10 +54,33 @@ const [filter, setFilter] = useState<string>("");
   const fetchWithdraws = async () => {
     try {
       setLoading(true);
-      const response = await adminService.getWithdraws(page, 20, filter);
-      setWithdraws(response.data);
-      if (response.pagination) {
-        setTotalPages(response.pagination.totalPages);
+      const [withdrawResponse, membershipResponse, usersResponse] = await Promise.all([
+        adminService.getWithdraws(page, 20, filter),
+        membershipService.getAllForms(1, 500),
+        adminService.getUsers(1, 500),
+      ]);
+
+      const lookup: Record<string, any> = {};
+      const userLookup: Record<string, { uniqueId?: string }> = {};
+
+      (membershipResponse.data || []).forEach((membership: any) => {
+        const userId = membership?.user?.id || membership?.userId;
+        if (userId) {
+          lookup[userId] = membership;
+        }
+      });
+
+      (usersResponse.data || []).forEach((user) => {
+        if (user.id) {
+          userLookup[user.id] = { uniqueId: user.uniqueId };
+        }
+      });
+
+      setMembershipLookup(lookup);
+      setMemberLookup(userLookup);
+      setWithdraws(withdrawResponse.data);
+      if (withdrawResponse.pagination) {
+        setTotalPages(withdrawResponse.pagination.totalPages);
       }
     } catch (error: any) {
       toast.error(error.message || 'Failed to fetch withdrawals');
@@ -123,6 +151,37 @@ const [filter, setFilter] = useState<string>("");
     }
   };
 
+  const getUserUniqueId = (withdraw: WithdrawRequest) => {
+    const userId = withdraw.userId || withdraw.user?.id;
+    const membershipUser = membershipLookup[userId || ''];
+    const uniqueId =
+      memberLookup[userId || '']?.uniqueId ||
+      membershipUser?.user?.uniqueId ||
+      withdraw.user?.uniqueId ||
+      'N/A';
+
+    return uniqueId;
+  };
+
+  const getBankDetails = (withdraw: WithdrawRequest) => {
+    const membership =
+      membershipLookup[withdraw.userId] ||
+      withdraw.user?.membership ||
+      withdraw.member || {
+        accountHolder: withdraw.accountHolder,
+        bankName: withdraw.bankName,
+        accountNumber: withdraw.accountNumber,
+        ifscCode: withdraw.ifscCode,
+      };
+
+    return {
+      accountHolder: membership?.accountHolder || 'N/A',
+      bankName: membership?.bankName || 'N/A',
+      accountNumber: membership?.accountNumber || 'N/A',
+      ifscCode: membership?.ifscCode || 'N/A',
+    };
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[300px] md:min-h-[400px]">
@@ -191,9 +250,11 @@ const [filter, setFilter] = useState<string>("");
                 <Table>
                   <TableHeader>
                     <TableRow>
+                      <TableHead>Unique ID</TableHead>
                       <TableHead>User</TableHead>
                       <TableHead>Amount</TableHead>
                       <TableHead>UPI ID</TableHead>
+                      <TableHead>Bank Details</TableHead>
                       <TableHead>Date</TableHead>
                       <TableHead>Status</TableHead>
                       <TableHead>Payment Transaction ID</TableHead>
@@ -201,55 +262,77 @@ const [filter, setFilter] = useState<string>("");
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {withdraws.map((withdraw) => (
-                      <TableRow key={withdraw.id}>
-                        <TableCell>
-                          <div>
-                            <p className="font-medium">{withdraw.user?.name || 'N/A'}</p>
-                            <p className="text-sm text-gray-500">{withdraw.user?.phone}</p>
-                          </div>
-                        </TableCell>
-                        <TableCell className="font-semibold">₹{withdraw.amount}</TableCell>
-                        <TableCell className="text-sm">{withdraw.upiId}</TableCell>
-                        <TableCell>
-                          {format(new Date(withdraw.createdAt), 'MMM dd, yyyy')}
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-2">
-                            {getStatusIcon(withdraw.status)}
-                            <Badge className={getStatusColor(withdraw.status)}>
-                              {withdraw.status}
-                            </Badge>
-                          </div>
-                        </TableCell>
-                        <TableCell className="text-sm">
-                          {withdraw.paymentTransactionId || '-'}
-                        </TableCell>
-                        <TableCell>
-                          {withdraw.status === 'pending' && (
-                            <div className="flex gap-2">
-                              <Button
-                                size="sm"
-                                onClick={() => handleApproveClick(withdraw)}
-                                className="bg-green-600 hover:bg-green-700"
-                              >
-                                <CheckCircle size={16} className="mr-1" />
-                                Approve
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleReject(withdraw.id)}
-                                className="text-red-600 hover:bg-red-50"
-                              >
-                                <XCircle size={16} className="mr-1" />
-                                Reject
-                              </Button>
+                    {withdraws.map((withdraw) => {
+                      const bankDetails = getBankDetails(withdraw);
+                      const uniqueId = getUserUniqueId(withdraw);
+
+                      return (
+                        <TableRow key={withdraw.id}>
+                          <TableCell>
+                            <button
+                              type="button"
+                              onClick={() => withdraw.userId && router.push(`/admin/users/${withdraw.userId}/withdrawals`)}
+                              className="font-mono text-sm font-semibold text-purple-700 transition-colors hover:text-purple-900 hover:opacity-80"
+                            >
+                              {uniqueId}
+                            </button>
+                          </TableCell>
+                          <TableCell>
+                            <div>
+                              <p className="font-medium">{withdraw.user?.name || 'N/A'}</p>
+                              <p className="text-sm text-gray-500">{withdraw.user?.phone}</p>
                             </div>
-                          )}
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                          </TableCell>
+                          <TableCell className="font-semibold">₹{withdraw.amount}</TableCell>
+                          <TableCell className="text-sm">{withdraw.upiId}</TableCell>
+                          <TableCell className="min-w-[220px]">
+                            <div className="space-y-1 text-xs text-gray-700">
+                              <p><span className="font-semibold">A/C Holder:</span> {bankDetails.accountHolder}</p>
+                              <p><span className="font-semibold">Bank:</span> {bankDetails.bankName}</p>
+                              <p className="font-mono"><span className="font-semibold not-italic">A/C No:</span> {bankDetails.accountNumber}</p>
+                              <p className="font-mono"><span className="font-semibold not-italic">IFSC:</span> {bankDetails.ifscCode}</p>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            {format(new Date(withdraw.createdAt), 'MMM dd, yyyy')}
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2">
+                              {getStatusIcon(withdraw.status)}
+                              <Badge className={getStatusColor(withdraw.status)}>
+                                {withdraw.status}
+                              </Badge>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-sm">
+                            {withdraw.paymentTransactionId || '-'}
+                          </TableCell>
+                          <TableCell>
+                            {withdraw.status === 'pending' && (
+                              <div className="flex gap-2">
+                                <Button
+                                  size="sm"
+                                  onClick={() => handleApproveClick(withdraw)}
+                                  className="bg-green-600 hover:bg-green-700"
+                                >
+                                  <CheckCircle size={16} className="mr-1" />
+                                  Approve
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handleReject(withdraw.id)}
+                                  className="text-red-600 hover:bg-red-50"
+                                >
+                                  <XCircle size={16} className="mr-1" />
+                                  Reject
+                                </Button>
+                              </div>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
                   </TableBody>
                 </Table>
               </div>

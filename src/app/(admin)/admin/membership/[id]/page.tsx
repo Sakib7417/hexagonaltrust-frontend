@@ -57,17 +57,25 @@ export default function AdminMembershipDetailPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center gap-4">
-        <Button variant="outline" onClick={() => router.push('/admin/membership')}>
-          <ArrowLeft size={16} className="mr-2" />
-          Back
-        </Button>
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Membership Details</h1>
-          <p className="text-gray-600 mt-1">
-            Submitted on {format(new Date(membership.createdAt), 'MMM dd, yyyy')}
-          </p>
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Button variant="outline" onClick={() => router.push('/admin/membership')}>
+            <ArrowLeft size={16} className="mr-2" />
+            Back
+          </Button>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Membership Details</h1>
+            <p className="text-gray-600 mt-1">
+              Submitted on {format(new Date(membership.createdAt), 'MMM dd, yyyy')}
+            </p>
+          </div>
         </div>
+        <Button
+          onClick={() => router.push(`/admin/membership/${membership.id}/edit`)}
+          className="bg-purple-600 hover:bg-purple-700"
+        >
+          Edit Details
+        </Button>
       </div>
 
       {/* User Info */}

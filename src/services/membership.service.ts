@@ -17,8 +17,14 @@ export const membershipService = {
   getAllForms: async (page = 1, limit = 10, search?: string) => {
     const params: any = { page, limit };
     if (search) params.search = search;
-    
+
     const response = await api.get('/membership/all', { params });
+    return response.data;
+  },
+
+  // Update a membership form by id (Admin)
+  updateForm: async (id: string, formData: any) => {
+    const response = await api.put(`/membership/${id}`, formData);
     return response.data;
   },
 };
